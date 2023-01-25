@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>컨텐츠에 데이터 출력하기</h1>
+    <ul>
+     <!--
+          웹 브라우저는 '<'를 HTML 태그의 시작으로 인식한다. 따라서 < 태그의 시작이 아니라
+         문자로 표현할 수 있는 방법이 필요하다. 이것을 'html 엔티티'라 부른다.
+         그리고 이렇게 HTML에서 사용하는 특수 문자를 html 엔티티로 변경하는 것을
+         이스케이프(escape)라 한다.(태그를 그대로 보여준다)
+
+         타임리프가 제공하는 th:text, [[...]]는 기본적으로 이스케이프를 제공한다.
+
+         기본적으로는 이스케이프를 처리하는 게 맞다.
+        ㄴ(만약) 이스케이프 기능을 사용하지 않으려면(태그 기능을 먹혀서 보여준다는 뜻 <b> 두꺼운 글꼴 </b>)?
+             th:text -> th:utext , [[...]] -> [(...)]
+     -->
+        <h1>text vs utext</h1>
+        <li>th:text 사용(태그 자체를 보여줌) <span th:text="${data}"></span></li>
+        <li>th:utext 사용(태그 기능을 보여줌) <span th:utext="${data}"></span></li>
+
+        <!-- th:inline="none" 타임리프가 해석하지 말라는 뜻, 안 적으면 ... 만 출력됨. -->
+        <h1><span th:inline="none">[[...]] vs [(...)]</span></h1>
+        <li>컨텐츠 안에서 직접 출력하기 = [[${data}]]</li>
+        <li>컨텐츠 안에서 직접 출력하기 = [(${data})]</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>조건부 평가</title>
+</head>
+<body>
+    <h1>if, unless</h1>
+    <table border="1">
+        <tr>
+            <th>count</th>
+            <th>username</th>
+            <th>age</th>
+        </tr>
+        <tr th:each="user, userStat:${users}">
+            <td th:text="${userStat.count}">1</td>
+            <td th:text="${user.username}">username1</td>
+            <td>
+                <span th:text="${user.age}">0</span>
+                <!--나이가 20살 보다 적다, '<' (true)-->
+                <span th:text="'미성년자'" th:if="${user.age lt 20}"></span>
+
+                <!--나이(10살)가 20살보다 크거나 같다 '>=' (false) -> 반대이기에 (true)-->
+                <span th:text="'미성년자'" th:unless="${user.age ge 20}">0</span>
+            </td>
+        </tr>
+    </table>
+
+    <table border="1">
+
+    </table>
+</body>
+</html>

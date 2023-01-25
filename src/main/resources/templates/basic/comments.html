@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>주석</title>
+</head>
+<body>
+    <h1>예시</h1>
+    <span th:text="${data}">html data</span>
+
+    <h1>1. 표준 HTML 주석 &lt;!-- --&gt; </h1>
+    <!-- -->
+
+    <!--띄어쓰기 없이 작성!! 중요!!(3번보다는 2번 많이 사용)-->
+    <h1>2. 타임리프 파서 주석  <!--/*[[${data}]]*/--> </h1>
+    <!--/*[[${data}]]*/-->
+
+    <!--파일을 직접 열때는 안볼거지만, 타임리프로 렌더링 할때는 출력해줄거야! (사용할 일이 있을까? 많이 없다.)-->
+    <h1>3. 타임리프 프로토타입 주석</h1>
+    <!--/*/
+        <span th:text="${data}">html data</span>
+    /*/-->
+</body>
+</html>

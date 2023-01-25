@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>리터럴</title>
+</head>
+<body>
+
+    <h1>리터럴('')
+        <small style="font-size: 13px; color: gray">타임리프에서 문자 리터럴은 항상 ' (작은 따옴표)로 감싸야 한다.</small>
+    </h1>
+    <ul>
+        <!--주의! 다음 주석을 풀면 파싱 예외가 발생함(공백이 있으니까!, '' 으로 잡아야함.)-->
+<!--        <li>"Hello world" = <span th:text="hello world!"></span></li>-->
+        <li>"Hello world" = <span th:text="'hello world!'"></span></li>
+        <li>'hello world' = <span th:text="'hello'+' world!'"></span></li>
+        <li>'hello world' = <span th:text="'hello'+' world!'"></span></li>
+        <li>'hello ' + ${data} = <span th:text="'hello '+ ${data}"></span></li>
+        <li>리터럴 대체 |hello ${data}| = <span th:text="|hello ${data}|"></span></li>
+    </ul>
+    </body>
+</html>

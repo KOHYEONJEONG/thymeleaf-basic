@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>블록</title>
+</head>
+<body>
+    <!--렌더링 시 제거된다. 일반적으로는 안 사용하는게 맞지만 어쩔 수 없을떄-->
+    <!--user 하나당 div를 두개씩 찍고 싶을때 등, each만으로 사용하기 어려울 때.-->
+    <th:block th:each="user : ${users}">
+        <div>
+            사용자 이름1 <span th:text="${user.username}"></span><br/>
+            사용자 나이1 <span th:text="${user.age}"></span><br/>
+        </div>
+
+        <div>
+            요약 <span th:text="${user.username} + ' / ' + ${user.age}"></span>
+        </div>
+
+        <br/>
+    </th:block>
+</body>
+</html>
