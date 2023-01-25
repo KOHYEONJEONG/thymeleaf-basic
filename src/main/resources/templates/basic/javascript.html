@@ -2,9 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>자바스크립트 인라인</title>
+    <title>Title</title>
 </head>
 <body>
+<!-- 자바스크립트 인라인 사용 전 -->
+<script>
+    //자바스크립트가 꺠진다!!!
+  /*    var username = [[${user.username}]];
+        var age = [[${user.age}]];
+    */
+    var username = "[[${user.username}]]";
+    var age = "[[${user.age}]]";
+    //자바스크립트 내추럴 템플릿
+    var username2 = /*[[${user.username}]]*/ "test username";
+    //객체
+    var user = "[[${user}]]";
+</script>
 
+
+<!-- 자바스크립트 인라인 사용 후 (th:inline="javascript")-->
+<script th:inline="javascript">
+    var username = [[${user.username}]];
+    var age = [[${user.age}]];
+    //자바스크립트 내추럴 템플릿
+    var username2 = /*[[${user.username}]]*/ "test username";//대체됨
+    //객체
+    var user = [[${user}]]; //객체를 호출하면 .toString()이 호출됨.
+</script>
 </body>
 </html>
