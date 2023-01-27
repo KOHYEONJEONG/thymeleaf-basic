@@ -133,7 +133,7 @@ public class BasicController {
     @GetMapping("javascript")
     public String javascript(Model model){
 
-        model.addAttribute("user", new User("UserLone",10));
+        model.addAttribute("user", new User("User\"A\"",10));
         addUsers(model);
 
         return "basic/javascript";
@@ -148,7 +148,7 @@ public class BasicController {
         model.addAttribute("users", list);
     }
 
-    //굉장히 단순한 스프링 빈 등록
+    /**굉장히 단순한 스프링 빈 등록*/
     @Component("helloBean")
     static class HelloBean{
         public String hello(String data){

@@ -29,6 +29,7 @@
             <th>etc</th>
         </tr>
 
+        <!--첫번째 : 순수값, 두번째 : 숫자-->
         <tr th:each="user, userStat : ${users}">
             <td th:text="${userStat.count}">username</td>
             <td th:text="${user.username}">username</td>

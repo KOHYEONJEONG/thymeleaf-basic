@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>원하는 조각 붙이기</title>
+</head>
+<body>
+    <h1>부분 포함</h1>
+    <h2>부분 포함 insert</h2>
+
+    <!--insert는 <div>태그를 유지한 상태로 안에다 삽입-->
+    <div th:insert="~{template/fragment/footer :: copy}"></div>
+
+    <!--replace는 태그 자체를 대체하기 때문에 <div>가 사라짐!!-->
+    <h2>부분 포함 replace</h2>
+    <div th:replace="~{template/fragment/footer :: copy}"></div>
+
+    <h2>부분 포함 단순 표현식(~빼고, 근데 그냥 붙이자)</h2>
+    <div th:replace="template/fragment/footer :: copy"></div>
+
+    <h2>파라미터 사용</h2>
+    <div th:replace="~{template/fragment/footer :: copyParam('데이터1','데이터2')}"></div>
+</body>
+</html>

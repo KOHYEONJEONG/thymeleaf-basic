@@ -5,29 +5,54 @@
     <title>Title</title>
 </head>
 <body>
-<!-- 자바스크립트 인라인 사용 전 -->
+<!-- 자바스크립트 인라인 사용 전, HTML 엔티티 그대로 처리함!(이스케이프 안함) -->
 <script>
-    //자바스크립트가 꺠진다!!!
-  /*    var username = [[${user.username}]];
+    //자바스크립트가 깨진다!!!
+    /*
+        var username = [[${user.username}]];
         var age = [[${user.age}]];
     */
-    var username = "[[${user.username}]]";
+    var username = "[[${user.username}]]"; //User&quot;A&quot;;
     var age = "[[${user.age}]]";
+
     //자바스크립트 내추럴 템플릿
-    var username2 = /*[[${user.username}]]*/ "test username";
-    //객체
-    var user = "[[${user}]]";
+    var username2 = /*[[${user.username}]]*/ "test username"; // 결과) /*userA*/ "test username"
+
+    //객체(인라인 사용전 : 객체를 호출하면 .toString()이 호출됨.)
+    var user = "[[${user}]]"; // BasicController.User(username=userA, age=10);
 </script>
 
+<H3>인라인 사용 전 결과를 보면 순수하게 그대로 해석해버렸다(이스케이프 처리X)<br/>
+    자바스크립트 인라인 기능을 사용하면 주석을 활용해서 이 기능을 사용할 수 있다.
+    (마우스 우측 - 페이지 소스 보기)
+</H3>
 
-<!-- 자바스크립트 인라인 사용 후 (th:inline="javascript")-->
+<!-- 자바스크립트 인라인 사용 후 (th:inline="javascript"), 이스케이프 처리까지 해준다!!-->
 <script th:inline="javascript">
-    var username = [[${user.username}]];
+    var username = [[${user.username}]]; //"User\"A\"";
     var age = [[${user.age}]];
+
     //자바스크립트 내추럴 템플릿
-    var username2 = /*[[${user.username}]]*/ "test username";//대체됨
-    //객체
-    var user = [[${user}]]; //객체를 호출하면 .toString()이 호출됨.
+    var username2 = /*[[${user.username}]]*/ "test username";//대체됨, 결과) "userA"
+
+    //객체(인라인 사용 후: 객체를 JSON으로 변환해준다.)
+    var user = [[${user}]];// {"username":"userA","age":10};
+
 </script>
+
+<script th:inline="javascript">
+
+    [# th:each="user, stat : ${users}"]
+    var user[[${stat.count}]] = [[${user}]];
+    [/]
+
+    //  user[[${stat.count}]] 치환이 되면서! 값이 달라짐, 변수명을 다르게 만들어야할때 굳!
+    // var user1 = {"username":"UserA","age":10};
+    // var user2 = {"username":"UserB","age":20};
+    // var user3 = {"username":"UserC","age":30};
+
+
+</script>
+
 </body>
 </html>
