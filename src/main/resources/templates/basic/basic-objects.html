@@ -20,8 +20,9 @@
     <li>Request Parameter = <span th:text="${param.paramData}"></span></li>
     <li>session = <span th:text="${session.sessionData}"></span></li>
 
-    <!--helloBean에 접근!-->
+    <!-- 스프링 빈 접근 : @ -->
     <li>spring bean = <span th:text="${@helloBean.hello('Spring!')}"></span></li>
+    <!--출력 : Hello Spring!-->
 </ul>
 </body>
 </html>
